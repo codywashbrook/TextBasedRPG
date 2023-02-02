@@ -11,8 +11,8 @@ namespace TextBasedRPG
         //enemy and player have different X and Y to make them similar
         public int PlayerX = 56;
         public int PlayerY = 12;
-        public int EnemyX = 92;
-        public int EnemyY = 19;
+        public int EnemyX = 97;
+        public int EnemyY = 16;
         //player health
         public int health = 50;
         public static int EnemyDeathcount;
