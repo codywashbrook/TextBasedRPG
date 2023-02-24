@@ -67,7 +67,7 @@ namespace TextBasedRPG
             Console.WriteLine();
             Console.WriteLine("B + ENTER: RESUME GAME....");
             Console.WriteLine();
-            Console.WriteLine("I + ENTER: UNEQUIP");
+            Console.WriteLine("i + ENTER: UNEQUIP");
             Console.WriteLine();
             Console.WriteLine("# OF SLOT + ENTER: SELECT ITEM");
 

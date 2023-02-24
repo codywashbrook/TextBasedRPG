@@ -43,32 +43,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boss.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="Enemy.cs" />
-    <Compile Include="EnemyManager.cs" />
-    <Compile Include="GameManager.cs" />
-    <Compile Include="GameOver.cs" />
-    <Compile Include="GameWorld.cs" />
-    <Compile Include="Heavy.cs" />
-    <Compile Include="HUD.cs" />
-    <Compile Include="Inventory.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="ItemManager.cs" />
-    <Compile Include="Light.cs" />
-    <Compile Include="MainMenu.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="MvmtCamera.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Characters\Boss.cs" />
+    <Compile Include="Characters\Character.cs" />
+    <Compile Include="Characters\Enemy.cs" />
+    <Compile Include="ItemPickups\Armor.cs" />
+    <Compile Include="ItemPickups\FirstAid.cs" />
+    <Compile Include="Managers\EnemyManager.cs" />
+    <Compile Include="Managers\GameManager.cs" />
+    <Compile Include="SetScreen\GameOver.cs" />
+    <Compile Include="SetScreen\GameWorld.cs" />
+    <Compile Include="Characters\Heavy.cs" />
+    <Compile Include="OnScreen\HUD.cs" />
+    <Compile Include="OnScreen\Inventory.cs" />
+    <Compile Include="ItemPickups\Item.cs" />
+    <Compile Include="Managers\ItemManager.cs" />
+    <Compile Include="Characters\Light.cs" />
+    <Compile Include="SetScreen\MainMenu.cs" />
+    <Compile Include="OnScreen\Map.cs" />
+    <Compile Include="ItemPickups\Money.cs" />
+    <Compile Include="OnScreen\MvmtCamera.cs" />
+    <Compile Include="Characters\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tile.cs" />
-    <Compile Include="Weapon.cs" />
+    <Compile Include="OnScreen\Tile.cs" />
+    <Compile Include="ItemPickups\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExpoScreen.txt" />
+    <Content Include="GameOverDead.txt" />
+    <Content Include="GameOverWin.txt" />
+    <Content Include="GameWorld.txt" />
+    <Content Include="MainMenu.txt" />
     <Content Include="map.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

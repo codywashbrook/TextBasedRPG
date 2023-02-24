@@ -1,0 +1,18 @@
+﻿   ___                      ___                        ___         
+ _|\  \__                 _|\  \__                   _|\  \__      
+|\   ____\               |\   ____\                 |\   ____\     
+\ \  \___|_        ___   \ \  \___|_        ___     \ \  \___|_    
+ \ \_____  \     _|\  \__ \ \_____  \     _|\  \__   \ \_____  \   
+  \|____|\  \   |\   ____\ \|____|\  \   |\   ____\   \|____|\  \  
+    ____\_\  \  \ \  \___|_  ____\_\  \  \ \  \___|_    ____\_\  \ 
+   |\___    __\  \ \_____  \|\___    __\  \ \_____  \  |\___    __\
+   \|___|\__\_|   \|____|\  \|___|\__\_|   \|____|\  \ \|___|\__\_|
+        \|__|       ____\_\  \   \|__|       ____\_\  \     \|__|  
+                   |\___    __\             |\___    __\           
+                   \|___|\__\_|             \|___|\__\_|           
+                        \|__|                    \|__|             
+
+You are D.B. Cooper
+Police are scouring the abandoned campground where you've parachuted with your haul of cash but....
+The bag of money had ripped in mid-air while you were landing.
+Find the money and escape the abandoned campground.

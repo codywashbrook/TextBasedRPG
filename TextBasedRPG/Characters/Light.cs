@@ -20,7 +20,7 @@ namespace TextBasedRPG
             characterTile.tileCharacter = 'e';
             characterTile.tileColour = ConsoleColor.Red;
             health = 25;
-            shield = 0;
+            armor = 0;
             name = "Light";
             attackDamage = 2;
         }

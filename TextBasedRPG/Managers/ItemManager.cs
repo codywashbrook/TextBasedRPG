@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextBasedRPG.ItemPickups;
 
 namespace TextBasedRPG
 {
     class ItemManager
     {
         //makes array
+
         public Item[] items = new Item[itemCap];
         public int itemCount;
+
         //# of enemies
+
         private static int itemCap = 100;
         public void InitItemLoc(char[,] world, int X, int Y)
         {
@@ -131,5 +135,4 @@ namespace TextBasedRPG
             return false;
         }
     }
-}
 }

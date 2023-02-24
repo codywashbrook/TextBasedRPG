@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TextBasedRPG
 {
-    class MainMenu : Program
+    class MainMenu
     {
         //game start//self explan
         public void StartMainMenu()

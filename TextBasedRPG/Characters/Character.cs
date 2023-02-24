@@ -16,7 +16,7 @@ namespace TextBasedRPG
         }
         //Character stats
         public int health;
-        public int shield;
+        public int armor;
         public int xLoc;
         public int yLoc;
         public int attackDamage;
@@ -49,12 +49,12 @@ namespace TextBasedRPG
         public void TakeDamage(int Damage)
         {
             //spill over
-            int remainingDamage = Damage - shield;
-            shield = shield - Damage;
-            if (shield <= 0)
+            int remainingDamage = Damage - armor;
+            armor = armor - Damage;
+            if (armor <= 0)
             {
-                //shield breaks then damage starts to take away from health
-                shield = 0;
+                //armor breaks then damage starts to take away from health
+                armor = 0;
                 health = health - remainingDamage;
             }
             if (health <= 0)
@@ -69,14 +69,14 @@ namespace TextBasedRPG
         {
             health = health + hp;
         }
-        //regen sheild
-        public void RegenShield(int sp)
+        //regen armor
+        public void RegenArmor(int sp)
         {
-            shield = shield + sp;
-            if (shield >= 50)
+            armor = armor + sp;
+            if (armor >= 50)
             {
-                //shield max 100
-                shield = 50;
+                //armor max 100
+                armor = 50;
             }
         }
         //show on screen character death

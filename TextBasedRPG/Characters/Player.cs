@@ -24,7 +24,7 @@ namespace TextBasedRPG
             characterTile.tileCharacter = '@';
             characterTile.tileColour = ConsoleColor.Cyan;
             health = 100;
-            shield = 0;
+            armor = 0;
             collectedMoney = 0;
             name = "DB Cooper";
             weaponInHand = new Item();
@@ -39,7 +39,7 @@ namespace TextBasedRPG
             weaponInHand.itemType = Item.ItemType.Fist;
             attackDamage = 5;
         }
-        public void CollectValuable(int money)
+        public void CollectMoney(int money)
         {
             collectedMoney = collectedMoney + money;
         }

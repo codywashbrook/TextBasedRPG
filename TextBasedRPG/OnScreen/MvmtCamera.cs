@@ -9,7 +9,7 @@ namespace TextBasedRPG
     class MvmtCamera
     {
         // equal to map
-        public char[,] renderer = new char[269, 63];
+        public char[,] renderer = new char[276, 44];
         public int endViewY;
         public int endViewX;
         public int offsetX;

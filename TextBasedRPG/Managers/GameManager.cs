@@ -14,13 +14,13 @@ namespace TextBasedRPG
             MainMenu mainMenu = new MainMenu();
             mainMenu.StartMainMenu();
             Console.Clear();
-            mainMenu.ShowInfoScreen();
+            mainMenu.ShowExpoScreen();
             Console.Clear();
 
             //intant and declar
 
             Map map = new Map();
-            World world = new World();
+            GameWorld world = new GameWorld();
             GameOver gameOver = new GameOver();
             Player player = new Player();
             EnemyManager enemyManager = new EnemyManager();
@@ -28,7 +28,7 @@ namespace TextBasedRPG
             HUD Hud = new HUD();
             MvmtCamera camera = new MvmtCamera();
             Inventory inventory = new Inventory();
-            world.InitEntities(enemyManager, itemManager, player);
+            world.InitAll(enemyManager, itemManager, player);
 
             //the game loop
             while (true)
@@ -51,10 +51,10 @@ namespace TextBasedRPG
                 //if game ends in any way, break out of the game loop
 
                 if (gameOver.gameOverWin == true) { break; }
-                if (gameOver.gameOverLoss == true) { break; }
+                if (gameOver.gameOverDead == true) { break; }
             }
             if (gameOver.gameOverWin == true) { Console.Clear(); gameOver.GameOverWinScreen(); }
-            if (gameOver.gameOverLoss == true) { Console.Clear(); gameOver.GameOverLossScreen(); }
+            if (gameOver.gameOverDead == true) { Console.Clear(); gameOver.GameOverDeadScreen(); }
         }
     }
 }

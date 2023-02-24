@@ -17,7 +17,7 @@ namespace TextBasedRPG
             tileColour = colour;
         }
 
-        public void SetTileColour(char[,] renderer, int x, int y, int offsetX, int offsetY)
+        public void ShowTileColour(char[,] renderer, int x, int y, int offsetX, int offsetY)
         {
             if (renderer[x + offsetX, y + offsetY] == tileCharacter)
             {

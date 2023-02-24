@@ -10,7 +10,7 @@ namespace TextBasedRPG
     {
         // map size
 
-        public char[,] world = new char[269, 63];
+        public char[,] world = new char[276, 44];
         public string[] worldData;
         public string currWorldLine;
         private char worldTile;
@@ -20,7 +20,7 @@ namespace TextBasedRPG
         public GameWorld()
         {
             //mapData reads file through lines - Gets Y
-            worldData = System.IO.File.ReadAllLines("MapWorld.txt");
+            worldData = System.IO.File.ReadAllLines("GameWorld.txt");
             for (y = 0; y <= worldData.Length - 1; y = y + 1)
             {
                 //string created to be = to 1 / current line of map
