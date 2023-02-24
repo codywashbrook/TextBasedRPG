@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace TextBasedRPG
 {
-    internal class GameWorld
+    class GameWorld
     {
-        public char[,] world = new char[269, 63]; // size of map....
+        // map size
+
+        public char[,] world = new char[269, 63];
         public string[] worldData;
         public string currWorldLine;
         private char worldTile;
@@ -18,33 +20,30 @@ namespace TextBasedRPG
         public GameWorld()
         {
             //mapData reads file through lines - Gets Y
-            worldData = System.IO.File.ReadAllLines("World.txt");
+            worldData = System.IO.File.ReadAllLines("MapWorld.txt");
             for (y = 0; y <= worldData.Length - 1; y = y + 1)
             {
                 //string created to be = to 1 / current line of map
                 currWorldLine = worldData[y];
                 for (x = 0; x <= currWorldLine.Length - 1; x = x + 1)
                 {
-                    //char mapTile = mapData[y][x];
-                    //map tile is = to map line split by x
                     worldTile = currWorldLine[x];
-                    //map[x,y] is = to map tile for exact location
+
                     world[x, y] = worldTile;
                 }
             }
         }
-        public void InitEntities(EnemyManager enemyManager, ItemManager itemManager, Player player)
+        public void InitAll(EnemyManager enemyManager, ItemManager itemManager, Player player)
         {
             for (int y = 0; y < worldData.Length; y++)
             {
                 for (int x = 0; x < currWorldLine.Length; x++)
                 {
-                    enemyManager.InitEnemyFromWorldLoc(world, x, y);
-                    itemManager.InitItemFromWorldLoc(world, x, y);
-                    player.InitPlayerFromWorldLoc(world, x, y);
+                    enemyManager.InitEnemyWorldLoc(world, x, y);
+                    itemManager.InitItemLoc(world, x, y);
+                    player.InitPlayerWorldLoc(world, x, y);
                 }
             }
         }
     }
-}
 }

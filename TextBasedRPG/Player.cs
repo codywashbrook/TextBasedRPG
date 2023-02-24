@@ -9,109 +9,193 @@ namespace TextBasedRPG
 {
     class Player : Character
     {
+        private bool wallExist;
+        private bool enemyExist;
+        private bool itemExist;
+        public int collectedMoney;
+        public Item weaponInHand;
 
 
-        public void SpawnCharater()
+        public Player()
         {
+            //loads player stats
 
-            Console.WriteLine("P");
-            ConsoleKeyInfo keyPressed = Console.ReadKey();
+            SwitchVitalStatus(VitalStatus.Alive);
+            characterTile.tileCharacter = '@';
+            characterTile.tileColour = ConsoleColor.Cyan;
+            health = 100;
+            shield = 0;
+            collectedMoney = 0;
+            name = "DB Cooper";
+            weaponInHand = new Item();
+            BecomeUnarmed();
 
-            // mvmt
-            if (keyPressed.Key == ConsoleKey.W)
-            {
-                if (map[PlayerY - 1, PlayerX] == ".")
-                {
-                    PlayerY = PlayerY - 1;
-                }
-                else if (map[PlayerY - 1, PlayerX] == "#")
-                {
-                    PlayerY = PlayerY - 1;
-                }
-                else
-                {
+        }
 
+        //specific to the player
 
-                }
-            }
-            if (keyPressed.Key == ConsoleKey.A)
-            {
-                if (map[PlayerY, PlayerX - 1] == ".")
-                {
-                    PlayerX = PlayerX - 1;
-                }
-                else if (map[PlayerY, PlayerX - 1] == "#")
-                {
-                    PlayerX = PlayerX - 1;
-                }
-                else
-                {
-                  
-                }
-            }
-            if (keyPressed.Key == ConsoleKey.S)
-            {
-                if (map[PlayerY + 1, PlayerX] == ".")
-                {
-                    PlayerY = PlayerY + 1;
-                }
-                else if (map[PlayerY + 1, PlayerX] == "#")
-                {
-                    PlayerY = PlayerY + 1;
-                }
-                else
-                {
-                   
-                }
-            }
-            if (keyPressed.Key == ConsoleKey.D)
-            {
-                if (map[PlayerY, PlayerX + 1] == ".")
-                {
-                    PlayerX = PlayerX + 1;
-                }
-                else if (map[PlayerY, PlayerX + 1] == "#")
-                {
-                    PlayerX = PlayerX + 1;
-                }
-                else
-                {
-
-                }
-            }
-
-
-            //if enter is pressed and the player is near enemy, enemy will take damage
-            if (keyPressed.Key == ConsoleKey.Enter)
-            {
-                if (PlayerX == EnemyX - 1)
-                {
-
-                    EnemyDeathcount = EnemyDeathcount + 1;
-                    if (EnemyDeathcount == 1)
-                    {
-                        Enemy.IsDead = true;
-                    }
-
-                }
-
-            }
-
-            Console.WriteLine("P");
+        public void BecomeUnarmed()
+        {
+            weaponInHand.itemType = Item.ItemType.Fist;
+            attackDamage = 5;
+        }
+        public void CollectValuable(int money)
+        {
+            collectedMoney = collectedMoney + money;
+        }
+        public void InitPlayerWorldLoc(char[,] world, int X, int Y)
+        {
+            if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
+        }
+        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory)
+        {
             Console.CursorVisible = false;
+            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            if (vitalStatus == VitalStatus.Alive)
+            {
+                if (keyPressed.Key == ConsoleKey.W)
+                {
+                    //collision
+                    if (wallExist = map.IsWallAt(xLoc, yLoc - 1))
+                    {
+                        //do nothing 
+                    }
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc, yLoc - 1))
+                    {
+                        enemyManager.CheckEnemy(xLoc, yLoc - 1, attackDamage);
+                    }
+                    else if (itemExist = itemManager.WhereIsItem(xLoc, yLoc - 1))
+                    {
 
-        }
-        //shows stats
-        public void Stats()
-        {
-            Console.WriteLine("  Health: " + health + " X: " + PlayerX + "," + " Y: " + PlayerY);
+                        if (inventory.IsInventorySlotAvailable() == true)
+                        {
+                            itemManager.CheckAndPickupItems(xLoc, yLoc - 1);
+                        }
+                        else
+                        {
+                            inventory.inventoryIsFull = true;
+                        }
+                    }
+                    else
+                    {
+                        yLoc = yLoc - 1;
+                    }
+                }
+                if (keyPressed.Key == ConsoleKey.A)
+                {
+                    if (wallExist = map.IsWallAt(xLoc - 1, yLoc))
+                    {
+                        //null
+                    }
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc - 1, yLoc))
+                    {
+                        enemyManager.CheckEnemy(xLoc - 1, yLoc, attackDamage);
+                    }
+                    else if (itemExist = itemManager.WhereIsItem(xLoc - 1, yLoc))
+                    {
 
+                        if (inventory.IsInventorySlotAvailable() == true)
+                        {
+                            itemManager.CheckAndPickupItems(xLoc - 1, yLoc);
+                        }
+                        else
+                        {
+                            inventory.inventoryIsFull = true;
+                        }
+                    }
+                    else
+                    {
+                        xLoc = xLoc - 1;
+                    }
+                }
+                if (keyPressed.Key == ConsoleKey.S)
+                {
+                    if (wallExist = map.IsWallAt(xLoc, yLoc + 1))
+                    {
+                        //null
+                    }
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc, yLoc + 1))
+                    {
+                        enemyManager.CheckEnemy(xLoc, yLoc + 1, attackDamage);
+                    }
+                    else if (itemExist = itemManager.WhereIsItem(xLoc, yLoc + 1))
+                    {
+                        if (inventory.IsInventorySlotAvailable() == true)
+                        {
+                            itemManager.CheckAndPickupItems(xLoc, yLoc + 1);
+                        }
+                        else
+                        {
+                            inventory.inventoryIsFull = true;
+                        }
+                    }
+                    else
+                    {
+                        yLoc = yLoc + 1;
+                    }
+                }
+                if (keyPressed.Key == ConsoleKey.D)
+                {
+                    if (wallExist = map.IsWallAt(xLoc + 1, yLoc))
+                    {
+                        //null
+                    }
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc + 1, yLoc))
+                    {
+                        enemyManager.CheckEnemy(xLoc + 1, yLoc, attackDamage);
+                    }
+                    else if (itemExist = itemManager.WhereIsItem(xLoc + 1, yLoc))
+                    {
+                        if (inventory.IsInventorySlotAvailable() == true)
+                        {
+                            itemManager.CheckAndPickupItems(xLoc + 1, yLoc);
+                        }
+                        else
+                        {
+                            inventory.inventoryIsFull = true;
+                        }
+                    }
+                    else
+                    {
+                        xLoc = xLoc + 1;
+                    }
+                }
+                if (keyPressed.Key == ConsoleKey.I)
+                {
+                    inventory.inventoryIsOpen = true;
+                }
+
+                //collect money to win
+
+                if (collectedMoney >= 600)
+                {
+                    gameOver.gameOverWin = true;
+                }
+            }
+            else
+            {
+                SwitchVitalStatus(VitalStatus.Dead);
+            }
+            //if dead, then gameover
+
+            if (vitalStatus == VitalStatus.Dead)
+            {
+                gameOver.gameOverDead = true;
+            }
         }
-        //Controls
-        public void Controls()
+        //detect collision with player
+        public bool isPlayerAt(int x, int y)
         {
-            Console.WriteLine("WASD to move, Press Enter when near enemy to attack.");
+
+            if (x == xLoc)
+            {
+                if (y == yLoc)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
-
 }

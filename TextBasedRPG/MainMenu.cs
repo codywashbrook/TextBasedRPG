@@ -8,25 +8,34 @@ namespace TextBasedRPG
 {
     class MainMenu : Program
     {
-        public void DisplayMainMenu()
+        //game start//self explan
+        public void StartMainMenu()
         {
-            Console.Clear();
-            string Title;
-            Title = System.IO.File.ReadAllText("MainTitle.txt");
-            Console.Write(Title);
+            string titleScreen = System.IO.File.ReadAllText("MainMenu.txt");
+            Console.WriteLine(titleScreen);
             Console.WriteLine();
-            Console.WriteLine("A - Start Game"); //start game
-            Console.WriteLine("B - Quit Game");             //quit game
-            ConsoleKeyInfo keyPressed = Console.ReadKey();
-            if (keyPressed.Key == ConsoleKey.A)
-            {
-                GameEngine();
-            }
-            if (keyPressed.Key == ConsoleKey.B)
+            Console.WriteLine("Press any button - New Game");
+            Console.WriteLine("Z - Quit");
+            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            if (keyPressed.Key == ConsoleKey.Z)
             {
                 System.Environment.Exit(1);
             }
             Console.ReadKey(true);
+            Console.Beep(2200, 100);
+            return;
+        }
+        //Exposition
+        public void ShowExpoScreen()
+        {
+            Console.SetCursorPosition(0, 0);
+            string beginningInfo = System.IO.File.ReadAllText("ExpoScreen.txt");
+            Console.WriteLine(beginningInfo);
+            Console.WriteLine();
+            Console.WriteLine("START?");
+            Console.ReadKey(true);
+            Console.Beep(2200, 100);
+            return;
         }
     }
 }
