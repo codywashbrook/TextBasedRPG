@@ -14,7 +14,7 @@ namespace TextBasedRPG.ItemPickups
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = 'A';
+            itemTile.tileCharacter = 'S';
             itemType = ItemType.Armor;
         }
         public override void Update(Map map, Player player, Inventory inventory, MvmtCamera camera, ItemManager itemManager)
