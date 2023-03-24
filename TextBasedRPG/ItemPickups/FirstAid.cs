@@ -25,7 +25,6 @@ namespace TextBasedRPG.ItemPickups
         {
             if (pickedUp == true)
             {
-                //player.Heal(10);
                 inventory.addItemToInventory(this);
                 infoMessage = "You have found a " + name +"!";
                 base.Update(map, player, inventory, camera, itemManager);
