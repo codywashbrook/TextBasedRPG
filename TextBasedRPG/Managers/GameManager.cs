@@ -10,6 +10,9 @@ namespace TextBasedRPG
     {
         public void RunGame()
         {
+
+            Global global = new Global();
+
             //self explan
             MainMenu mainMenu = new MainMenu();
             mainMenu.StartMainMenu();
@@ -27,7 +30,7 @@ namespace TextBasedRPG
             ItemManager itemManager = new ItemManager();
             HUD Hud = new HUD();
             MvmtCamera camera = new MvmtCamera();
-            Inventory inventory = new Inventory();
+            Inventory inventory = new Inventory(itemManager);
             world.InitAll(enemyManager, itemManager, player);
 
             //the game loop

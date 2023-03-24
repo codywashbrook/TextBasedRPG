@@ -8,7 +8,7 @@ namespace TextBasedRPG
 {
     class Map
     {
-        public char[,] map = new char[276, 44]; // size of map
+        public char[,] map = new char[Global.mapWidth, Global.mapHeight]; // 276, 44 size of map
         public string[] mapData;
         public string currMapLine;
         public bool openDoors = false;
@@ -16,22 +16,22 @@ namespace TextBasedRPG
         private int x;
         private int y;
 
-        public Tile water = new Tile('~', ConsoleColor.Blue);
-        public Tile grass = new Tile('`', ConsoleColor.Green);
-        public Tile hill = new Tile('^', ConsoleColor.DarkGray);
-        public Tile mountain = new Tile('7', ConsoleColor.DarkGray);
-        public Tile floor = new Tile('=', ConsoleColor.DarkGray);
-        public Tile path = new Tile('#', ConsoleColor.Yellow);
-        public Tile verticalWall = new Tile('-', ConsoleColor.Gray);
-        public Tile horizontalWall = new Tile('|', ConsoleColor.Gray);
-        public Tile cornerWallLeft = new Tile('<', ConsoleColor.Gray);
-        public Tile cornerWallRight = new Tile('>', ConsoleColor.Gray);
+        public Tile water = new Tile(Global.mapTileIDs[0], Global.mapTileColours[0]);
+        public Tile grass = new Tile(Global.mapTileIDs[1], Global.mapTileColours[1]);
+        public Tile hill = new Tile(Global.mapTileIDs[2], Global.mapTileColours[2]);
+        public Tile mountain = new Tile(Global.mapTileIDs[3], Global.mapTileColours[3]);
+        public Tile verticalWall = new Tile(Global.mapTileIDs[4], Global.mapTileColours[4]);
+        public Tile horizontalWall = new Tile(Global.mapTileIDs[5], Global.mapTileColours[5]);
+        public Tile cornerWallLeft = new Tile(Global.mapTileIDs[7], Global.mapTileColours[7]);
+        public Tile cornerWallRight = new Tile(Global.mapTileIDs[6], Global.mapTileColours[6]);
+        public Tile floor = new Tile(Global.mapTileIDs[8], Global.mapTileColours[8]);
+        public Tile path = new Tile(Global.mapTileIDs[9], Global.mapTileColours[9]);
 
         //loads map
         public Map()
         {
             //mapData reads file through lines - Gets Y
-            mapData = System.IO.File.ReadAllLines("map.txt");
+            mapData = System.IO.File.ReadAllLines("DataStats/map.txt");
             for (y = 0; y <= mapData.Length - 1; y = y + 1)
             {
                 //string created to be = to 1 / current line of map
@@ -75,27 +75,27 @@ namespace TextBasedRPG
         //for others to detect walls
         public bool IsWallAt(int x, int y)
         {
-            //lets you walk on certain tiles not others, cave for future idea
-            if (map[x, y] == '=')
+            //lets you walk on certain tiles not others
+            if (map[x, y] == Global.mapTileIDs[8])
             {
                 return false;
             }
-            else if (map[x, y] == '#')
+            else if (map[x, y] == Global.mapTileIDs[9])
             {
                 return false;
             }
-            else if (map[x, y] == '░')
+            else if (map[x, y] == Global.mapTileIDs[11])
             {
                 return false;
             }
-            else if (map[x, y] == '`')
+            else if (map[x, y] == Global.mapTileIDs[1])
             {
                 return false;
             }
             //future idea
             if (openDoors == true)
             {
-                if (map[x, y] == '▒')
+                if (map[x, y] == Global.mapTileIDs[12])
                 {
                     return false;
                 }

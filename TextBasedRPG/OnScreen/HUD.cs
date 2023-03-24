@@ -16,25 +16,21 @@ namespace TextBasedRPG
             //prevent overlap
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(0, camera.endViewY + 1);
+            Console.SetCursorPosition(0, camera.endViewY + 2);
             Console.WriteLine(clear);
-            Console.Write(player.name + " health: " + player.health);
+            Console.Write(player.name + " health: " + player.health + "             " + player.xLoc + ", " + player.yLoc);
             Console.WriteLine(clear);
             Console.Write(player.name + " armor: " + player.armor);
             Console.WriteLine(clear);
             Console.Write(player.name + " weapon in hand: " + player.weaponInHand.itemType);
             Console.WriteLine(clear);
-            Console.Write("stolen money recovered: " + player.collectedMoney + "/600");
+            Console.Write("stolen moneybags recovered: " + player.collectedMoney + "/7");
             Console.WriteLine(clear);
-            Console.Write("hit 'i' to open inventory....");
+            Console.Write("hit 'i' to open inventory");
             if (inventory.inventoryIsFull == true)
             {
                 Console.WriteLine(clear);
                 Console.Write("INVENTORY FULL");
-            }
-            else
-            {
-                //null
             }
             Console.WriteLine();
 

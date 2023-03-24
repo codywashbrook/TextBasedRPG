@@ -24,6 +24,9 @@ namespace TextBasedRPG
         protected VitalStatus vitalStatus;
         public Tile characterTile = new Tile(' ', ConsoleColor.White);
 
+        protected int armorCap;
+        protected int healthCap;
+
         //to switch or set if the character is alive or dead
 
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
@@ -68,15 +71,21 @@ namespace TextBasedRPG
         public void Heal(int hp)
         {
             health = health + hp;
+            if (health >= healthCap)
+            {
+                //health max 100
+                health = healthCap;
+            }
+
         }
         //regen armor
         public void RegenArmor(int sp)
         {
             armor = armor + sp;
-            if (armor >= 50)
+            if (armor >= armorCap)
             {
-                //armor max 100
-                armor = 50;
+                //armor max 50
+                armor = armorCap;
             }
         }
         //show on screen character death

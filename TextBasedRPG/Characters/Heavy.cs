@@ -19,12 +19,14 @@ namespace TextBasedRPG
             //heavy stats
 
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = 'E';
-            characterTile.tileColour = ConsoleColor.Red;
-            health = 100;
-            armor = 0;
-            name = "Heavy";
-            attackDamage = 5;
+            characterTile.tileCharacter = Global.heavyAppearance;
+            characterTile.tileColour = Global.heavyColour;
+            health = Global.heavyHealth;
+            healthCap = Global.heavyHealth;
+            armor = Global.heavyShield;
+            armorCap = Global.heavyShield;
+            name = Global.heavyName;
+            attackDamage = Global.heavyAttackDamage;
         }
         //update method with specific behavior, else taken from main enemy class
         public override void Update(Map map, Player player, MvmtCamera camera, ItemManager itemManager, EnemyManager enemyManager)

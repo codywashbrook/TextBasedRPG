@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace TextBasedRPG.ItemPickups
 {
@@ -14,8 +15,11 @@ namespace TextBasedRPG.ItemPickups
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = '+';
+            itemTile.tileCharacter = Global.firstAidAppearance;
+            itemTile.tileColour = Global.firstAidColour;
             itemType = ItemType.FirstAid;
+            name = ItemType.FirstAid.ToString();
+            Random rand = new Random();
         }
         public override void Update(Map map, Player player, Inventory inventory, MvmtCamera camera, ItemManager itemManager)
         {
@@ -23,7 +27,7 @@ namespace TextBasedRPG.ItemPickups
             {
                 //player.Heal(10);
                 inventory.addItemToInventory(this);
-                infoMessage = "You have found First Aid!";
+                infoMessage = "You have found a " + name +"!";
                 base.Update(map, player, inventory, camera, itemManager);
                 itemTile.tileCharacter = '+';
                 xLoc = 0;
@@ -40,7 +44,7 @@ namespace TextBasedRPG.ItemPickups
             }
             if (used == true)
             {
-                player.Heal(10);
+                player.Heal(Global.firstAidHP);
                 pickedUp = false;
                 used = false;
                 itemTile.tileCharacter = ' ';

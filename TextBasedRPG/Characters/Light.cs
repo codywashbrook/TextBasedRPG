@@ -17,12 +17,14 @@ namespace TextBasedRPG
             //light enemy stats
 
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = 'e';
-            characterTile.tileColour = ConsoleColor.Red;
-            health = 25;
-            armor = 0;
-            name = "Light";
-            attackDamage = 2;
+            characterTile.tileCharacter = Global.lightAppearance;
+            characterTile.tileColour = Global.lightColour;
+            health = Global.lightHealth;
+            healthCap = Global.lightHealth;
+            armor = Global.lightShield;
+            armorCap = Global.lightShield;
+            name = Global.lightName;
+            attackDamage = Global.lightAttackDamage;
         }
 
         public override void Update(Map map, Player player, MvmtCamera camera, ItemManager itemManager, EnemyManager enemyManager)

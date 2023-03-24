@@ -13,21 +13,33 @@ namespace TextBasedRPG
 
         public Item[] items = new Item[itemCap];
         public int itemCount;
-
+        public int moneyCount;
         //# of enemies
 
         private static int itemCap = 100;
         public void InitItemLoc(char[,] world, int X, int Y)
         {
             if (itemCount > itemCap - 1) { return; }
-            if (world[X, Y] == '+') { items[itemCount] = new FirstAid(X, Y); itemCount = itemCount + 1; }
-            if (world[X, Y] == 'S') { items[itemCount] = new Armor(X, Y); itemCount = itemCount + 1; }
-            if (world[X, Y] == '$') { items[itemCount] = new Money(X, Y); itemCount = itemCount + 1; }
+            if (world[X, Y] == Global.firstAidAppearance) { items[itemCount] = new FirstAid(X, Y); itemCount = itemCount + 1; }
+            if (world[X, Y] == Global.armorAppearance) { items[itemCount] = new Armor(X, Y); itemCount = itemCount + 1; }
+            if (world[X, Y] == Global.moneyAppearance) { items[itemCount] = new Money(X, Y); itemCount = itemCount + 1; moneyCount++; }
             if (world[X, Y] == '1') { items[itemCount] = new Weapon(X, Y, Item.ItemType.BrassKnuckles); itemCount = itemCount + 1; }
             if (world[X, Y] == '2') { items[itemCount] = new Weapon(X, Y, Item.ItemType.BaseballBat); itemCount = itemCount + 1; }
-            if (world[X, Y] == 'W') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Knife); itemCount = itemCount + 1; }
+            if (world[X, Y] == '3') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Knife); itemCount = itemCount + 1; }
             if (world[X, Y] == '4') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Axe); itemCount = itemCount + 1; }
             if (world[X, Y] == '5') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Chainsaw); itemCount = itemCount + 1; }
+        }
+
+        public void CreateItemInInventory(Item.ItemType itemType)
+        {
+            if (itemCount > itemCap - 1) { return; }
+            if (itemType == Item.ItemType.FirstAid) { items[itemCount] = new FirstAid(0, 0); itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.Armor) { items[itemCount] = new Armor(0, 0); itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.BrassKnuckles) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.BaseballBat) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.Knife) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.Axe) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.Chainsaw) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1; }
         }
 
         //cycles through items and updates each one

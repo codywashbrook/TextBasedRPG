@@ -16,14 +16,15 @@ namespace TextBasedRPG
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = '$';
+            itemTile.tileCharacter = Global.moneyAppearance;
+            itemTile.tileColour = Global.moneyColour;
             itemType = ItemType.Money;
         }
         public override void Update(Map map, Player player, Inventory inventory, MvmtCamera camera, ItemManager itemManager)
         {
             if (pickedUp == true)
             {
-                player.CollectMoney(100);
+                player.CollectMoney();
                 itemTile.tileCharacter = ' ';
                 xLoc = 0;
                 yLoc = 0;

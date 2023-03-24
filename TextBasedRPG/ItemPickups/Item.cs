@@ -30,6 +30,7 @@ namespace TextBasedRPG
         public bool dropped;
         public bool used;
         public string infoMessage;
+        protected string name;
 
         //local
 

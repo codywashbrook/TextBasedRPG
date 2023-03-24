@@ -83,7 +83,7 @@ namespace TextBasedRPG
         }
         public void DrawToRenderer(char character, int x, int y)
         {
-            //draawing items to the renderer
+            //drawing items to the renderer
             renderer[x, y] = character;
         }
         public void SetColours(int x, int y, Player player, EnemyManager enemyManager, Map map, ItemManager itemManager)

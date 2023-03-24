@@ -14,15 +14,18 @@ namespace TextBasedRPG.ItemPickups
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = 'S';
+            itemTile.tileCharacter = Global.armorAppearance;
+            itemTile.tileColour = Global.armorColour;
             itemType = ItemType.Armor;
+            name = ItemType.Armor.ToString();
+            Random rand = new Random();
         }
         public override void Update(Map map, Player player, Inventory inventory, MvmtCamera camera, ItemManager itemManager)
         {
             if (pickedUp == true)
             {
                 inventory.addItemToInventory(this);
-                infoMessage = "You found Armor!";
+                infoMessage = "You found " + name +"!";
                 base.Update(map, player, inventory, camera, itemManager);
                 xLoc = 0;
                 yLoc = 0;
@@ -39,7 +42,7 @@ namespace TextBasedRPG.ItemPickups
             }
             if (used == true)
             {
-                player.RegenArmor(100);
+                player.RegenArmor(Global.ShieldSP);
                 pickedUp = false;
                 used = false;
                 itemTile.tileCharacter = ' ';

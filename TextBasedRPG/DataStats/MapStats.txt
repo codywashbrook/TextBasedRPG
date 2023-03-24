@@ -1,0 +1,44 @@
+﻿//split this way cause some chars are tiles, just think ; as a =
+
+Width;276
+Height;44
+
+WaterID;~
+WaterColour;DarkBlue
+GrassID;`
+GrassColour;Green
+HillID;^
+HillColour;Gray
+MountainID;7
+MountainColour;White
+VertWallID;-
+VertWallColour;Gray
+HorizWallID;|
+HorizWallColour;Gray
+RightCornerWallID;>
+RightCornerWallColour;Gray
+LeftCornerWallID;<
+LeftCornerWallColour;Gray
+FloorID;=
+FloorColour;DarkMagenta
+PathID;#
+PathColour;DarkGray
+
+//The map in GameWorld.txt is a visual for placing entities, make sure that the map in GameWorld.txt is an exact copy of the map in map.txt
+//ConsoleColours Available to set:
+Black
+Blue
+Cyan
+DarkBlue
+DarkCyan
+DarkGray
+DarkGreen
+Magenta
+DarkRed
+DarkYellow
+Gray
+Green
+DarkMagenta
+Red
+White
+Yellow

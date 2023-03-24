@@ -46,6 +46,7 @@
     <Compile Include="Characters\Boss.cs" />
     <Compile Include="Characters\Character.cs" />
     <Compile Include="Characters\Enemy.cs" />
+    <Compile Include="Managers\Global.cs" />
     <Compile Include="ItemPickups\Armor.cs" />
     <Compile Include="ItemPickups\FirstAid.cs" />
     <Compile Include="Managers\EnemyManager.cs" />
@@ -72,12 +73,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DataStats\EnemyStats.txt" />
+    <Content Include="DataStats\ItemStats.txt" />
+    <Content Include="DataStats\MapStats.txt" />
+    <Content Include="DataStats\PlayerStats.txt" />
     <Content Include="ExpoScreen.txt" />
     <Content Include="GameOverDead.txt" />
     <Content Include="GameOverWin.txt" />
-    <Content Include="GameWorld.txt" />
+    <Content Include="DataStats\GameWorld.txt" />
     <Content Include="MainMenu.txt" />
-    <Content Include="map.txt" />
+    <Content Include="DataStats\map.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

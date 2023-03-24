@@ -13,7 +13,10 @@ namespace TextBasedRPG
         private bool enemyExist;
         private bool itemExist;
         public int collectedMoney;
-        public Item weaponInHand;
+        public Weapon weaponInHand = new Weapon(0, 0, Item.ItemType.Fist);
+
+        private int previousXLoc;
+        private int previousYLoc;
 
 
         public Player()
@@ -21,14 +24,25 @@ namespace TextBasedRPG
             //loads player stats
 
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = '@';
-            characterTile.tileColour = ConsoleColor.Cyan;
-            health = 100;
-            armor = 0;
+            characterTile.tileCharacter = Global.playerAppearance;
+            characterTile.tileColour = Global.playerColour;
+            health = Global.playerHealth;
+            armor = Global.playerShield;
+            healthCap = Global.playerHealth;
+            armorCap = Global.playerShield;
+            name = Global.playerName;
             collectedMoney = 0;
-            name = "DB Cooper";
-            weaponInHand = new Item();
-            BecomeUnarmed();
+
+            if (Global.playerStartingWeapon == Item.ItemType.Fist.ToString()) { weaponInHand.SwitchWeap(Item.ItemType.Fist, this); }
+            if (Global.playerStartingWeapon == Item.ItemType.BrassKnuckles.ToString()) { weaponInHand.SwitchWeap(Item.ItemType.BrassKnuckles, this); }
+            if (Global.playerStartingWeapon == Item.ItemType.BaseballBat.ToString()) { weaponInHand.SwitchWeap(Item.ItemType.BaseballBat, this); }
+            if (Global.playerStartingWeapon == Item.ItemType.Knife.ToString()) { weaponInHand.SwitchWeap(Item.ItemType.Knife, this); }
+            if (Global.playerStartingWeapon == Item.ItemType.Axe.ToString()) { weaponInHand.SwitchWeap(Item.ItemType.Axe, this); }
+            if (Global.playerStartingWeapon == Item.ItemType.Chainsaw.ToString()) { weaponInHand.SwitchWeap(Item.ItemType.Chainsaw, this); }
+            else if (Global.playerStartingWeapon == null || Global.playerStartingWeapon == "") { weaponInHand.SwitchWeap(Item.ItemType.Fist, this); }
+
+            previousXLoc = xLoc;
+            previousYLoc = yLoc;
 
         }
 
@@ -39,21 +53,21 @@ namespace TextBasedRPG
             weaponInHand.itemType = Item.ItemType.Fist;
             attackDamage = 5;
         }
-        public void CollectMoney(int money)
+        public void CollectMoney()
         {
-            collectedMoney = collectedMoney + money;
+            collectedMoney++;
         }
         public void InitPlayerWorldLoc(char[,] world, int X, int Y)
         {
-            if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
+            if (world[X, Y] == Global.playerAppearance) { xLoc = X; yLoc = Y; }
         }
         public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory)
         {
             Console.CursorVisible = false;
-            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            ConsoleKey keyPressed = Console.ReadKey(true).Key;
             if (vitalStatus == VitalStatus.Alive)
             {
-                if (keyPressed.Key == ConsoleKey.W)
+                if (keyPressed == ConsoleKey.W)
                 {
                     //collision
                     if (wallExist = map.IsWallAt(xLoc, yLoc - 1))
@@ -64,7 +78,7 @@ namespace TextBasedRPG
                     {
                         enemyManager.CheckEnemy(xLoc, yLoc - 1, attackDamage);
                     }
-                    else if (itemExist = itemManager.WhereIsItem(xLoc, yLoc - 1))
+                    else if (itemExist = itemManager.WhereIsItem(xLoc, yLoc - 1) && inventory.settingUpInventory == false)
                     {
 
                         if (inventory.IsInventorySlotAvailable() == true)
@@ -78,14 +92,16 @@ namespace TextBasedRPG
                     }
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         yLoc = yLoc - 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.A)
+                if (keyPressed == ConsoleKey.A)
                 {
                     if (wallExist = map.IsWallAt(xLoc - 1, yLoc))
                     {
-                        //null
+                        //do nothing
                     }
                     else if (enemyExist = enemyManager.IsEnemyAt(xLoc - 1, yLoc))
                     {
@@ -105,14 +121,16 @@ namespace TextBasedRPG
                     }
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         xLoc = xLoc - 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.S)
+                if (keyPressed == ConsoleKey.S)
                 {
                     if (wallExist = map.IsWallAt(xLoc, yLoc + 1))
                     {
-                        //null
+                        //do nothing
                     }
                     else if (enemyExist = enemyManager.IsEnemyAt(xLoc, yLoc + 1))
                     {
@@ -131,14 +149,16 @@ namespace TextBasedRPG
                     }
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         yLoc = yLoc + 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.D)
+                if (keyPressed == ConsoleKey.D)
                 {
                     if (wallExist = map.IsWallAt(xLoc + 1, yLoc))
                     {
-                        //null
+                        //do nothing
                     }
                     else if (enemyExist = enemyManager.IsEnemyAt(xLoc + 1, yLoc))
                     {
@@ -157,17 +177,17 @@ namespace TextBasedRPG
                     }
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         xLoc = xLoc + 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.I)
+                if (keyPressed == ConsoleKey.I)
                 {
                     inventory.inventoryIsOpen = true;
                 }
-
-                //collect money to win
-
-                if (collectedMoney >= 600)
+                //determines win
+                if (collectedMoney >= itemManager.moneyCount)
                 {
                     gameOver.gameOverWin = true;
                 }
@@ -176,14 +196,13 @@ namespace TextBasedRPG
             {
                 SwitchVitalStatus(VitalStatus.Dead);
             }
-            //if dead, then gameover
-
+            //determines loss...
             if (vitalStatus == VitalStatus.Dead)
             {
                 gameOver.gameOverDead = true;
             }
         }
-        //detect collision with player
+        //for others to detect collision with player
         public bool isPlayerAt(int x, int y)
         {
 
@@ -196,6 +215,12 @@ namespace TextBasedRPG
             }
 
             return false;
+        }
+
+        public void ReturnToLastPosition()
+        {
+            xLoc = previousXLoc;
+            yLoc = previousYLoc;
         }
     }
 }

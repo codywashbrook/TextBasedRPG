@@ -16,9 +16,9 @@ namespace TextBasedRPG
         public void InitEnemyWorldLoc(char[,] world, int X, int Y)
         {
             if (enemyCount > enemyCap - 1) { return; }
-            else if (world[X, Y] == 'E') { enemies[enemyCount] = new Heavy(X, Y); enemyCount = enemyCount + 1; }
-            else if (world[X, Y] == 'e') { enemies[enemyCount] = new Light(X, Y); enemyCount = enemyCount + 1; }
-            else if (world[X, Y] == 'B') { enemies[enemyCount] = new Boss(X, Y); enemyCount = enemyCount + 1; }
+            else if (world[X, Y] == Global.heavyAppearance) { enemies[enemyCount] = new Heavy(X, Y); enemyCount = enemyCount + 1; }
+            else if (world[X, Y] == Global.lightAppearance) { enemies[enemyCount] = new Light(X, Y); enemyCount = enemyCount + 1; }
+            else if (world[X, Y] == Global.bossAppearance) { enemies[enemyCount] = new Boss(X, Y); enemyCount = enemyCount + 1; }
         }
         //updates each enemy
         public void UpdateEnemies(Map map, Player player, MvmtCamera camera, ItemManager itemManager, EnemyManager enemyManager)
@@ -73,6 +73,13 @@ namespace TextBasedRPG
                 }
             }
             return false;
+        }
+
+        public void AddHeavEnemy(int x, int y)
+        {
+            if (enemyCount > enemyCap - 1) { return; }
+            enemies[enemyCount] = new Heavy(x, y);
+            enemyCount += 1;
         }
     }
 }
