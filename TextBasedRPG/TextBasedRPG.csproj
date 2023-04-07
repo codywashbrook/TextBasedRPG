@@ -73,16 +73,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataStats\EnemyStats.txt" />
-    <Content Include="DataStats\ItemStats.txt" />
-    <Content Include="DataStats\MapStats.txt" />
-    <Content Include="DataStats\PlayerStats.txt" />
-    <Content Include="ExpoScreen.txt" />
-    <Content Include="GameOverDead.txt" />
-    <Content Include="GameOverWin.txt" />
-    <Content Include="DataStats\GameWorld.txt" />
+    <Content Include="DataStats\EnemyStats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataStats\ItemStats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataStats\MapStats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataStats\PlayerStats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpoScreen.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameOverDead.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameOverWin.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataStats\GameWorld.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MainMenu.txt" />
-    <Content Include="DataStats\map.txt" />
+    <Content Include="DataStats\map.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

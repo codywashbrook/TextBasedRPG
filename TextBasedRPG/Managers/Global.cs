@@ -61,8 +61,6 @@ namespace TextBasedRPG
         public static char armorAppearance;
         public static int ShieldSP;
         public static ConsoleColor armorColour;
-        public static char keyAppearance;
-        public static ConsoleColor keyColour;
         public static char moneyAppearance;
         public static ConsoleColor moneyColour;
         public static char weaponAppearance;
